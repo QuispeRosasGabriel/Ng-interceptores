@@ -28,7 +28,6 @@ export class UsuariosService {
     })
       .pipe(
         map(resp => resp['data']),
-
       )
   }
 
