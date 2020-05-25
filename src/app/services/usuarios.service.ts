@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +22,17 @@ export class UsuariosService {
       "x-token": "ABC"
     })
 
+    //capturar error con los status code personalizados
     return this.http.get("https://reqres.in/api/user", { params: params, headers: headers })
+      .pipe(
+        map(resp => resp['data']),
+        catchError(this.manejarError)
+      )
+  }
+
+  //manejar error de forma global
+  manejarError(error: HttpErrorResponse) {
+    return throwError("Error personalizado")
+
   }
 }

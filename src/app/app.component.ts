@@ -17,7 +17,9 @@ export class AppComponent {
     this._usuarioService.obtenerUsuarios()
       .subscribe(resp => {
         console.log(resp);
+      }), (err: any) => {
+        console.log("Error");
 
-      })
+      }
   }
 }
