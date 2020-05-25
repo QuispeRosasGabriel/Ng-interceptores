@@ -28,13 +28,13 @@ export class UsuariosService {
     })
       .pipe(
         map(resp => resp['data']),
-        catchError(this.manejarError)
+
       )
   }
 
   //manejar error de forma global
-  manejarError(error: HttpErrorResponse) {
-    return throwError("Error personalizado")
+  // manejarError(error: HttpErrorResponse) {
+  //   return throwError("Error personalizado")
 
-  }
+  // }
 }
