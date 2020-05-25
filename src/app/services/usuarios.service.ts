@@ -18,12 +18,14 @@ export class UsuariosService {
     params = params.append("nombre", "Gabriel")
 
     //mandar token por los headers
-    let headers = new HttpHeaders({
-      "x-token": "ABC"
-    })
+    // let headers = new HttpHeaders({
+    //   "x-token": "ABC"
+    // })
 
     //capturar error con los status code personalizados
-    return this.http.get("https://reqres.in/api/user", { params: params, headers: headers })
+    return this.http.get("https://reqres.in/api/user", {
+      params: params
+    })
       .pipe(
         map(resp => resp['data']),
         catchError(this.manejarError)
